@@ -58,9 +58,9 @@ RUN echo "Europe/Amsterdam" > /etc/timezone && dpkg-reconfigure --frontend nonin
     touch /var/log/cron.log
 
 # Healthcheck
-RUN apt-get install -y libfcgi0ldbl \
-    && curl -sL https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck --output /usr/local/bin/php-fpm-healthcheck \
-    && chmod +x /usr/local/bin/php-fpm-healthcheck
+RUN apt-get install -y libfcgi0ldbl 
+RUN curl -sL https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck --output /usr/local/bin/php-fpm-healthcheck 
+RUN chmod +x /usr/local/bin/php-fpm-healthcheck
 HEALTHCHECK CMD php-fpm-healthcheck || exit 1
 
 RUN mkdir -p /app
