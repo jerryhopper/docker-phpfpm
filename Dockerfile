@@ -68,6 +68,7 @@ RUN apt-get install -y libfcgi0ldbl
 RUN apt-get clean autoclean
 RUN apt-get autoremove --yes
 RUN rm -rf /var/lib/{apt,dpkg,cache,log}/
+RUN rm -rf /tmp/.
 
 RUN curl -sL https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck --output /usr/local/bin/php-fpm-healthcheck 
 RUN chmod +x /usr/local/bin/php-fpm-healthcheck
