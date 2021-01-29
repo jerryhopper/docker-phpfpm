@@ -63,6 +63,12 @@ RUN echo "Europe/Amsterdam" > /etc/timezone && dpkg-reconfigure --frontend nonin
 
 # Healthcheck
 RUN apt-get install -y libfcgi0ldbl 
+
+# Cleanup
+RUN apt-get clean autoclean
+RUN apt-get autoremove --yes
+RUN rm -rf /var/lib/{apt,dpkg,cache,log}/
+
 RUN curl -sL https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck --output /usr/local/bin/php-fpm-healthcheck 
 RUN chmod +x /usr/local/bin/php-fpm-healthcheck
 HEALTHCHECK CMD php-fpm-healthcheck || exit 1
