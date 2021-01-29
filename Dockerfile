@@ -1,5 +1,5 @@
 FROM php:7.3-fpm
-LABEL maintainer="chin@oberon.nl"
+LABEL maintainer="hopper.jerry@gmail.com"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     TERM=xterm \
@@ -12,6 +12,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PHP_SESSION_SAVE_PATH="" \
     PHP_SMTP_HOST=localhost \
     PHP_MAX_INPUT_VARS=1000
+
+RUN apt-get update
+RUN apt-cache search libfcgi0ldbl 
+RUN apt-get install -y libfcgi0ldbl 
 
 COPY settings/production.ini /usr/local/etc/php/conf.d/00-production.ini
 COPY settings/docker-settings.ini /usr/local/etc/php/conf.d/01-docker-settings.ini
