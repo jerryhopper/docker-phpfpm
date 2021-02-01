@@ -39,7 +39,7 @@ RUN apt-get install -y --no-install-recommends jpegoptim libjpeg-turbo-progs opt
 # PHP Modules
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync
-RUN install-php-extensions bcmath curl exif gd intl ldap mbstring memcached mysqli opcache pdo_mysql simplexml soap sockets redis xsl zip
+RUN install-php-extensions bcmath curl exif gd intl ldap mbstring memcached mysqli opcache pdo_mysql simplexml soap sockets redis xsl zip unzip
 
 # PHP 7.3 specific Modules
 RUN install-php-extensions xmlrpc imagick
