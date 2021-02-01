@@ -31,15 +31,15 @@ RUN echo "LANG=\"en_US.UTF-8\"" > /etc/default/locale && \
     echo "nl_NL.UTF-8 UTF-8" >> /etc/locale.gen 
 
 # Install dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils supervisor cron nano git locales zip openssh-client
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils supervisor cron nano git locales zip openssh-client wget unzip
 
 # Install image optimizers
-RUN apt-get install -y --no-install-recommends jpegoptim libjpeg-turbo-progs optipng gifsicle webp
+RUN apt-get install -y --no-install-recommends jpegoptim libjpeg-turbo-progs optipng gifsicle webp 
 
 # PHP Modules
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync
-RUN install-php-extensions bcmath curl exif gd intl ldap mbstring memcached mysqli opcache pdo_mysql simplexml soap sockets redis xsl zip unzip
+RUN install-php-extensions bcmath curl exif gd intl ldap mbstring memcached mysqli opcache pdo_mysql simplexml soap sockets redis xsl zip
 
 # PHP 7.3 specific Modules
 RUN install-php-extensions xmlrpc imagick
